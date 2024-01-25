@@ -7,10 +7,23 @@ string siteCorsPolicy = "SiteCorsPolicy";
 
 var builder = WebApplication.CreateBuilder(args);
 {
+
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy(siteCorsPolicy,
+                           builder =>
+                           {
+                               builder.WithOrigins("http://localhost:7292")
+                                                   .AllowAnyHeader()
+                                                   .AllowAnyMethod()
+                                                   .AllowCredentials();
+                           });
+    });
+
     builder.Services
-        .AddPresentation(siteCorsPolicy)
+        .AddPresentation()
         .AddDomain()
-        .AddInfrastructure();
+        .AddInfrastructure(builder.Configuration.GetConnectionString("Database");
 }
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 

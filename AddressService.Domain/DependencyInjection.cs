@@ -1,7 +1,6 @@
 ﻿using AddressService.Domain.Services;
 using AddressService.Domain.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using AddressService.Domain.Profiles;
 
 
 namespace AddressService.Domain

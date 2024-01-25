@@ -1,4 +1,6 @@
-﻿namespace AddressService.Domain.Services.Interfaces
+﻿using AddressService.ClassLibrary.Models;
+
+namespace AddressService.Domain.Services.Interfaces
 {
     public interface IAddressDomainService
     {

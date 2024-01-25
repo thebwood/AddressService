@@ -3,19 +3,8 @@
     public static class DependencyInjection
     {
 
-        public static IServiceCollection AddPresentation(this IServiceCollection services, string siteCorsPolicy)
+        public static IServiceCollection AddPresentation(this IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(siteCorsPolicy,
-                                   builder =>
-                                   {
-                                       builder.WithOrigins("http://localhost:7292")
-                                                           .AllowAnyHeader()
-                                                           .AllowAnyMethod()
-                                                           .AllowCredentials();
-                                   });
-            });
             services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
