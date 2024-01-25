@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressService.Domain", "Ad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressService.Infrastructure", "AddressService.Infrastructure\AddressService.Infrastructure.csproj", "{F46EEDB8-8F0D-4D92-87B8-EFDD3EE3DC04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressService.ClassLibrary", "AddressService.ClassLibrary\AddressService.ClassLibrary.csproj", "{FBD4ADE5-914A-43EC-B3A1-4D28FFAF06D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F46EEDB8-8F0D-4D92-87B8-EFDD3EE3DC04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F46EEDB8-8F0D-4D92-87B8-EFDD3EE3DC04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F46EEDB8-8F0D-4D92-87B8-EFDD3EE3DC04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBD4ADE5-914A-43EC-B3A1-4D28FFAF06D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBD4ADE5-914A-43EC-B3A1-4D28FFAF06D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBD4ADE5-914A-43EC-B3A1-4D28FFAF06D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBD4ADE5-914A-43EC-B3A1-4D28FFAF06D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

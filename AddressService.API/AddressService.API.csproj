@@ -8,10 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AddressService.ClassLibrary\AddressService.ClassLibrary.csproj" />
     <ProjectReference Include="..\AddressService.Domain\AddressService.Domain.csproj" />
     <ProjectReference Include="..\AddressService.Infrastructure\AddressService.Infrastructure.csproj" />
   </ItemGroup>

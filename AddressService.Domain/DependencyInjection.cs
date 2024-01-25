@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AddressService.Domain.Services;
+using AddressService.Domain.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using AddressService.Domain.Profiles;
+
 
 namespace AddressService.Domain
 {
@@ -6,6 +10,7 @@ namespace AddressService.Domain
     {
         public static IServiceCollection AddDomain(this IServiceCollection services)
         {
+            services.AddTransient<IAddressDomainService, AddressDomainService>();
             return services;
 
         }

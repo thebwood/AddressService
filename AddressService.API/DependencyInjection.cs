@@ -3,15 +3,14 @@
     public static class DependencyInjection
     {
 
-        public static IServiceCollection AddPresentation(this IServiceCollection services)
+        public static IServiceCollection AddPresentation(this IServiceCollection services, string siteCorsPolicy)
         {
-            string siteCorsPolicy = "SiteCorsPolicy";
             services.AddCors(options =>
             {
                 options.AddPolicy(siteCorsPolicy,
                                    builder =>
                                    {
-                                       builder.WithOrigins("http://localhost:4200")
+                                       builder.WithOrigins("http://localhost:7292")
                                                            .AllowAnyHeader()
                                                            .AllowAnyMethod()
                                                            .AllowCredentials();

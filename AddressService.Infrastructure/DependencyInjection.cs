@@ -7,6 +7,7 @@ namespace AddressService.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services) 
         {
+            services.AddTransient<Repositories.Interfaces.IAddressRepository, Repositories.AddressRepository>();
             return services;
         }
 
