@@ -1,14 +1,16 @@
-﻿namespace AddressService.ClassLibrary.Models
-{
-    public class Address : Entity
-    {
-        public Address(Guid addressId) : base(addressId)
-        {
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-        }
-        public Address(Guid addressId, string streetAddress, string? streetAddress2, string city, string state, string postalCode)
-            : base(addressId)
+namespace AddressService.ClassLibrary.DTOs
+{
+    public class AddressDTO
+    {
+        public AddressDTO(Guid id, string streetAddress, string? streetAddress2, string city, string state, string postalCode)
         {
+            Id = id;
             StreetAddress = streetAddress;
             StreetAddress2 = streetAddress2;
             City = city;
@@ -16,12 +18,12 @@
             PostalCode = postalCode;
         }
 
+        public Guid Id { get; set; }
         public string StreetAddress { get; set; }
         public string? StreetAddress2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string PostalCode { get; set; }
-
 
     }
 }

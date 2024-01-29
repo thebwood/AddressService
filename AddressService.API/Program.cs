@@ -1,4 +1,5 @@
 using AddressService.API;
+using AddressService.API.Extensions;
 using AddressService.Domain;
 using AddressService.Infrastructure;
 using Serilog;
@@ -34,6 +35,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.SeedData();
 }
 app.UseCors(siteCorsPolicy);
 app.UseSerilogRequestLogging();

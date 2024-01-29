@@ -10,6 +10,6 @@ namespace AddressService.Infrastructure.Data
         {
         }
 
-        public DbSet<Address> Address { get; set; } = null!;
+        public DbSet<Address> Addresses { get; set; } = null!;
     }
 }

@@ -6,10 +6,10 @@ namespace AddressService.ClassLibrary.DTOs
     {
         public GetAddressesResponseDTO()
         {
-            AddressList = new List<AddressViewModel>();
+            AddressList = new List<AddressDTO>();
         }
 
-        public List<AddressViewModel> AddressList { get; set; }
+        public List<AddressDTO> AddressList { get; set; }
 
     }
 }

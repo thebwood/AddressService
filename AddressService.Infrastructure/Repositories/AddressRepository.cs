@@ -1,38 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AddressService.ClassLibrary.Models;
+﻿using AddressService.ClassLibrary.Models;
+using AddressService.Infrastructure.Data;
 using AddressService.Infrastructure.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AddressService.Infrastructure.Repositories
 {
     public class AddressRepository : IAddressRepository
     {
-        public Task<Address> CreateAddress(Address address)
+        private readonly AddressDbContext _addressDbContext;
+        public AddressRepository(AddressDbContext addressDbContext)
         {
-            throw new NotImplementedException();
+            _addressDbContext = addressDbContext;
+        }
+        public async Task<Address> CreateAddress(Address address)
+        {
+            _addressDbContext.Addresses.Add(address);
+            await _addressDbContext.SaveChangesAsync();
+            return address;
         }
 
-        public Task<bool> DeleteAddress(Guid id)
+        public async Task<bool> DeleteAddress(Guid id)
         {
-            throw new NotImplementedException();
+            _addressDbContext.Addresses.Remove(new Address(id));
+            await _addressDbContext.SaveChangesAsync();
+            return true;
         }
 
-        public Task<Address> GetAddressById(Guid id)
+        public async Task<Address?> GetAddressById(Guid id)
         {
-            throw new NotImplementedException();
+            Address? address = await _addressDbContext.Addresses.SingleOrDefaultAsync(x => x.Id == id);
+            return address;
         }
 
-        public Task<List<Address>> GetAllAddresses()
+        public async Task<List<Address>> GetAllAddresses()
         {
-            throw new NotImplementedException();
+            return await _addressDbContext.Addresses.ToListAsync();
         }
 
-        public Task<Address> UpdateAddress(Address address)
+        public async Task<Address> UpdateAddress(Address address)
         {
-            throw new NotImplementedException();
+            _addressDbContext.Addresses.Update(address);
+            await _addressDbContext.SaveChangesAsync();
+            return address;
         }
     }
 }
