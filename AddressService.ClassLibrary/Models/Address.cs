@@ -2,6 +2,10 @@
 {
     public class Address : Entity
     {
+        public Address()
+        {
+
+        }
         public Address(Guid addressId) : base(addressId)
         {
 

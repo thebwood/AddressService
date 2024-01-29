@@ -5,11 +5,13 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressService.API", "AddressService.API\AddressService.API.csproj", "{AD686307-667E-40B3-BCE9-6A99CD71C8EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressService.Domain", "AddressService.Domain\AddressService.Domain.csproj", "{615190CA-DB27-4035-8468-11B982ED5E24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressService.Domain", "AddressService.Domain\AddressService.Domain.csproj", "{615190CA-DB27-4035-8468-11B982ED5E24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressService.Infrastructure", "AddressService.Infrastructure\AddressService.Infrastructure.csproj", "{F46EEDB8-8F0D-4D92-87B8-EFDD3EE3DC04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressService.Infrastructure", "AddressService.Infrastructure\AddressService.Infrastructure.csproj", "{F46EEDB8-8F0D-4D92-87B8-EFDD3EE3DC04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressService.ClassLibrary", "AddressService.ClassLibrary\AddressService.ClassLibrary.csproj", "{FBD4ADE5-914A-43EC-B3A1-4D28FFAF06D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressService.ClassLibrary", "AddressService.ClassLibrary\AddressService.ClassLibrary.csproj", "{FBD4ADE5-914A-43EC-B3A1-4D28FFAF06D1}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{65BE7B60-89E3-43E9-B0AB-44A6D5FD7F55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FBD4ADE5-914A-43EC-B3A1-4D28FFAF06D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBD4ADE5-914A-43EC-B3A1-4D28FFAF06D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBD4ADE5-914A-43EC-B3A1-4D28FFAF06D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65BE7B60-89E3-43E9-B0AB-44A6D5FD7F55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65BE7B60-89E3-43E9-B0AB-44A6D5FD7F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65BE7B60-89E3-43E9-B0AB-44A6D5FD7F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65BE7B60-89E3-43E9-B0AB-44A6D5FD7F55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

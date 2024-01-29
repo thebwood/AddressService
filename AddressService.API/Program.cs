@@ -23,10 +23,10 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services
         .AddPresentation()
-        .AddDomain()
-        .AddInfrastructure(builder.Configuration.GetConnectionString("Database"));
+        .AddInfrastructure(builder.Configuration.GetConnectionString("Database"))
+        .AddDomain();
 }
-builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
+//builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
 var app = builder.Build();
 
@@ -35,10 +35,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.SeedData();
+    app.ApplyMigrations();
+   // app.SeedData();
 }
 app.UseCors(siteCorsPolicy);
-app.UseSerilogRequestLogging();
+//app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 

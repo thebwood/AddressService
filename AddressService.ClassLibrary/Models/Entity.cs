@@ -8,6 +8,10 @@ namespace AddressService.ClassLibrary.Models
 {
     public class Entity
     {
+        public Entity()
+        {
+        }
+
         public Entity(Guid id)
         {
             Id = id;

@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+    addressservice.api:
+        image: ${DOCKER_REGISTRY-}addressserviceapi
+        container_name: addressservice.api
+        build:
+            context: .
+            dockerfile: AddressService.API/Dockerfile
+        ports:
+            - "5000:5000"
+            - "5001:5001"
+
+    addresses.database:
+        image: postgres:latest
+        container_name: addresses.database
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: addresses
+        volumes:
+            - ./.containers/addrresses-db:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
