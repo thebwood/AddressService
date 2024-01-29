@@ -1,6 +1,4 @@
-﻿using AddressService.ClassLibrary.ViewModels;
-
-namespace AddressService.ClassLibrary.DTOs
+﻿namespace AddressService.ClassLibrary.DTOs
 {
     public class GetAddressesResponseDTO
     {
