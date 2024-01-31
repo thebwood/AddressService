@@ -11,9 +11,8 @@ namespace AddressService.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, string? connectionString)
         {
             services.AddTransient<IAddressRepository, AddressRepository>();
-            services.AddDbContext<AddressDbContext>(
-                options => options.UseNpgsql(connectionString ?? string.Empty));
-
+            services.AddDbContext<AddressDbContext>(options =>
+                options.UseSqlServer(connectionString));
             return services;
         }
 

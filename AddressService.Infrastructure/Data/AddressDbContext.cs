@@ -9,7 +9,15 @@ namespace AddressService.Infrastructure.Data
         : base(options)
         {
         }
+        public DbSet<Address> Addresses { get; set; }
 
-        public DbSet<Address> Addresses { get; set; } = null!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Address>().ToTable("Addresses");
+
+        }
+
+
+
     }
 }

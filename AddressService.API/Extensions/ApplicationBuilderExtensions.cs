@@ -1,5 +1,6 @@
 ﻿using AddressService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AddressService.API.Extensions
 {
@@ -7,11 +8,11 @@ namespace AddressService.API.Extensions
     {
         public static void ApplyMigrations(this IApplicationBuilder app)
         {
-            using IServiceScope scope = app.ApplicationServices.CreateScope();
-
-            using AddressDbContext dbContext = scope.ServiceProvider.GetRequiredService<AddressDbContext>();
-
-            dbContext.Database.Migrate();
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetService<AddressDbContext>();
+                dbContext.Database.Migrate();
+            }
         }
     }
 }

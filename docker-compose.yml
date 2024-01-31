@@ -11,14 +11,13 @@ services:
             - "5000:5000"
             - "5001:5001"
 
-    addresses.database:
-        image: postgres:latest
-        container_name: addresses.database
+    address-db:
+        image: mcr.microsoft.com/mssql/server:2022-latest
         environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: addresses
-        volumes:
-            - ./.containers/addrresses-db:/var/lib/postgresql/data
+          ACCEPT_EULA: Y
+          SA_PASSWORD: scoobydoo123!
+          MSSQL_PID: Developer
         ports:
-            - 5432:5432
+          - "1433:1433"
+        volumes:
+          - ./data:/var/opt/mssql/data
