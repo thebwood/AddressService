@@ -65,8 +65,10 @@ namespace AddressService.API.Controllers
                 response.Success = false;
                 return response;
             }
-            Address updatedAddress = new Address(id, requestDTO.Address.StreetAddress, requestDTO.Address.StreetAddress2, requestDTO.Address.City, requestDTO.Address.State, requestDTO.Address.PostalCode);
+            address = new Address(id, requestDTO.Address.StreetAddress, requestDTO.Address.StreetAddress2, requestDTO.Address.City, requestDTO.Address.State, requestDTO.Address.PostalCode);
+            Address  updatedAddress = await _addressDomainService.UpdateAddress(address);
             AddressDTO updatedAddressDTO = new AddressDTO(updatedAddress.Id, updatedAddress.StreetAddress, updatedAddress.StreetAddress2, updatedAddress.City, updatedAddress.State, updatedAddress.PostalCode);
+
             response.StatusCode = HttpStatusCode.OK;
             response.Success = true;
             response.Value = updatedAddressDTO;
