@@ -3,6 +3,7 @@ using AddressService.ClassLibrary.Models;
 using AddressService.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace AddressService.API.Controllers
 {
@@ -54,16 +55,22 @@ namespace AddressService.API.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<ActionResult<AddressDTO>> UpdateAddress(Guid id, [FromBody] AddressDTO addressDTO)
+        public async Task<ActionResult<ResultDTO>> UpdateAddress(Guid id, [FromBody] UpdateAddressRequestDTO requestDTO)
         {
+            ResultDTO<AddressDTO> response = new ResultDTO<AddressDTO>();
             Address? address = await _addressDomainService.GetAddressById(id);
             if (address == null)
             {
-                return NotFound();
+                response.StatusCode = HttpStatusCode.NotFound;
+                response.Success = false;
+                return response;
             }
-            Address updatedAddress = new Address(addressDTO.Id, addressDTO.StreetAddress, addressDTO.StreetAddress2, addressDTO.City, addressDTO.State, addressDTO.PostalCode);
+            Address updatedAddress = new Address(id, requestDTO.Address.StreetAddress, requestDTO.Address.StreetAddress2, requestDTO.Address.City, requestDTO.Address.State, requestDTO.Address.PostalCode);
             AddressDTO updatedAddressDTO = new AddressDTO(updatedAddress.Id, updatedAddress.StreetAddress, updatedAddress.StreetAddress2, updatedAddress.City, updatedAddress.State, updatedAddress.PostalCode);
-            return Ok(updatedAddressDTO);
+            response.StatusCode = HttpStatusCode.OK;
+            response.Success = true;
+            response.Value = updatedAddressDTO;
+            return Ok(response);
         }
 
         [HttpDelete]
