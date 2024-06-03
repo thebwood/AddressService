@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
         options.AddPolicy(siteCorsPolicy,
                            builder =>
                            {
-                               builder.WithOrigins("http://localhost:7292")
+                               builder.WithOrigins("https://localhost:7027", "https://localhost:7292")
                                                    .AllowAnyHeader()
                                                    .AllowAnyMethod()
                                                    .AllowCredentials();

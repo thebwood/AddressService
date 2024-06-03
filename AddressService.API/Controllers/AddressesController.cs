@@ -17,25 +17,30 @@ namespace AddressService.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<AddressDTO>>> GetAllAddresses()
+        public async Task<ActionResult<GetAddressesResponseDTO>> GetAllAddresses()
         {
+            GetAddressesResponseDTO response = new GetAddressesResponseDTO();
             List<Address> addresses = await _addressDomainService.GetAllAddresses();
             List<AddressDTO> addressDTOs = addresses.Select(a => new AddressDTO(a.Id, a.StreetAddress, a.StreetAddress2, a.City, a.State, a.PostalCode)).ToList();
 
-            return Ok(addressDTOs);
+            response.AddressList = addressDTOs;
+
+            return Ok(response);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<AddressDTO>> GetAddressById(Guid id)
+        public async Task<ActionResult<GetAddressResponseDTO>> GetAddressById(Guid id)
         {
+            GetAddressResponseDTO response = new GetAddressResponseDTO();
             Address? address = await _addressDomainService.GetAddressById(id);
             if (address == null)
             {
                 return NotFound();
             }
             AddressDTO addressDTO = new AddressDTO(address.Id, address.StreetAddress, address.StreetAddress2, address.City, address.State, address.PostalCode);
-            return Ok(addressDTO);
+            response.Address = addressDTO;
+            return Ok(response);
         }
 
         [HttpPost]

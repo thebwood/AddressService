@@ -8,8 +8,8 @@ services:
             context: .
             dockerfile: AddressService.API/Dockerfile
         ports:
-            - "5000:5000"
-            - "5001:5001"
+            - "5010:5010"
+            - "5011:5011"
 
     address-db:
         image: mcr.microsoft.com/mssql/server:2022-latest

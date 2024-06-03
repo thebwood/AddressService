@@ -8,6 +8,7 @@ namespace AddressService.ClassLibrary.DTOs
 {
     public class AddressDTO
     {
+        public AddressDTO() { }
         public AddressDTO(Guid id, string streetAddress, string? streetAddress2, string city, string state, string postalCode)
         {
             Id = id;
