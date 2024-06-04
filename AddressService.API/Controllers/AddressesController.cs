@@ -46,9 +46,9 @@ namespace AddressService.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ResultDTO>> CreateAddress([FromBody] AddAddressRequestDTO requestDTO)
+        public async Task<ActionResult<Result>> CreateAddress([FromBody] AddAddressRequestDTO requestDTO)
         {
-            ResultDTO<AddressDTO> response = new ResultDTO<AddressDTO>();
+            Result<AddressDTO> response = new Result<AddressDTO>();
             try
             {
 
@@ -72,9 +72,9 @@ namespace AddressService.API.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<ActionResult<ResultDTO>> UpdateAddress(Guid id, [FromBody] UpdateAddressRequestDTO requestDTO)
+        public async Task<ActionResult<Result>> UpdateAddress(Guid id, [FromBody] UpdateAddressRequestDTO requestDTO)
         {
-            ResultDTO<AddressDTO> response = new ResultDTO<AddressDTO>();
+            Result<AddressDTO> response = new Result<AddressDTO>();
             try
             {
                 Address? address = await _addressDomainService.GetAddressById(id);
