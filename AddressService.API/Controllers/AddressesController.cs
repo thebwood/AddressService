@@ -45,9 +45,11 @@ namespace AddressService.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<AddressDTO>> CreateAddress([FromBody] AddressDTO addressDTO)
+        public async Task<ActionResult<ResultDTO>> CreateAddress([FromBody] AddAddressRequestDTO requestDTO)
         {
-            Address address = new Address(addressDTO.Id, addressDTO.StreetAddress, addressDTO.StreetAddress2, addressDTO.City, addressDTO.State, addressDTO.PostalCode);
+            ResultDTO<AddressDTO> response = new ResultDTO<AddressDTO>();
+
+            Address address = new Address(null, requestDTO.Address.StreetAddress, requestDTO.Address.StreetAddress2, requestDTO.Address.City, requestDTO.Address.State, requestDTO.Address.PostalCode);
             Address createdAddress = await _addressDomainService.CreateAddress(address);
             AddressDTO createdAddressDTO = new AddressDTO(createdAddress.Id, createdAddress.StreetAddress, createdAddress.StreetAddress2, createdAddress.City, createdAddress.State, createdAddress.PostalCode);
             return Ok(createdAddress);

@@ -10,7 +10,7 @@
         {
 
         }
-        public Address(Guid addressId, string streetAddress, string? streetAddress2, string city, string state, string postalCode)
+        public Address(Guid? addressId, string streetAddress, string? streetAddress2, string city, string state, string postalCode)
             : base(addressId)
         {
             StreetAddress = streetAddress;

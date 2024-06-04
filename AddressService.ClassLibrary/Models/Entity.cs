@@ -12,11 +12,11 @@ namespace AddressService.ClassLibrary.Models
         {
         }
 
-        public Entity(Guid id)
+        public Entity(Guid? id)
         {
             Id = id;
         }
 
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace AddressService.ClassLibrary.DTOs
     public class AddressDTO
     {
         public AddressDTO() { }
-        public AddressDTO(Guid id, string streetAddress, string? streetAddress2, string city, string state, string postalCode)
+        public AddressDTO(Guid? id, string streetAddress, string? streetAddress2, string city, string state, string postalCode)
         {
             Id = id;
             StreetAddress = streetAddress;
@@ -19,7 +19,7 @@ namespace AddressService.ClassLibrary.DTOs
             PostalCode = postalCode;
         }
 
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         public string StreetAddress { get; set; }
         public string? StreetAddress2 { get; set; }
         public string City { get; set; }
