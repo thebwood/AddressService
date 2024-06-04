@@ -1,6 +1,7 @@
 ﻿using AddressService.ClassLibrary.DTOs;
 using AddressService.ClassLibrary.Models;
 using AddressService.Domain.Services.Interfaces;
+using Azure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -48,11 +49,25 @@ namespace AddressService.API.Controllers
         public async Task<ActionResult<ResultDTO>> CreateAddress([FromBody] AddAddressRequestDTO requestDTO)
         {
             ResultDTO<AddressDTO> response = new ResultDTO<AddressDTO>();
+            try
+            {
 
-            Address address = new Address(null, requestDTO.Address.StreetAddress, requestDTO.Address.StreetAddress2, requestDTO.Address.City, requestDTO.Address.State, requestDTO.Address.PostalCode);
-            Address createdAddress = await _addressDomainService.CreateAddress(address);
-            AddressDTO createdAddressDTO = new AddressDTO(createdAddress.Id, createdAddress.StreetAddress, createdAddress.StreetAddress2, createdAddress.City, createdAddress.State, createdAddress.PostalCode);
-            return Ok(createdAddress);
+                Address address = new Address(null, requestDTO.Address.StreetAddress, requestDTO.Address.StreetAddress2, requestDTO.Address.City, requestDTO.Address.State, requestDTO.Address.PostalCode);
+                Address createdAddress = await _addressDomainService.CreateAddress(address);
+                AddressDTO createdAddressDTO = new AddressDTO(createdAddress.Id, createdAddress.StreetAddress, createdAddress.StreetAddress2, createdAddress.City, createdAddress.State, createdAddress.PostalCode);
+                
+                response.StatusCode = HttpStatusCode.Created;
+                response.Success = true;
+                response.Value = createdAddressDTO;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.Message = ex.Message;
+                response.Success = false;
+                return response;
+            }
         }
 
         [HttpPut]
@@ -60,21 +75,40 @@ namespace AddressService.API.Controllers
         public async Task<ActionResult<ResultDTO>> UpdateAddress(Guid id, [FromBody] UpdateAddressRequestDTO requestDTO)
         {
             ResultDTO<AddressDTO> response = new ResultDTO<AddressDTO>();
-            Address? address = await _addressDomainService.GetAddressById(id);
-            if (address == null)
+            try
             {
-                response.StatusCode = HttpStatusCode.NotFound;
+                Address? address = await _addressDomainService.GetAddressById(id);
+                if (address == null)
+                {
+
+                    response.StatusCode = HttpStatusCode.NotFound;
+                    response.Success = false;
+                    return NotFound(response);
+
+                }
+
+                
+                address.StreetAddress = requestDTO.Address.StreetAddress;
+                address.StreetAddress2 = requestDTO.Address.StreetAddress2;
+                address.City = requestDTO.Address.City;
+                address.State = requestDTO.Address.State;
+                address.PostalCode = requestDTO.Address.PostalCode;
+
+                Address updatedAddress = await _addressDomainService.UpdateAddress(address);
+                AddressDTO updatedAddressDTO = new AddressDTO(updatedAddress.Id, updatedAddress.StreetAddress, updatedAddress.StreetAddress2, updatedAddress.City, updatedAddress.State, updatedAddress.PostalCode);
+
+                response.StatusCode = HttpStatusCode.OK;
+                response.Success = true;
+                response.Value = updatedAddressDTO;
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = HttpStatusCode.InternalServerError;
+                response.Message = ex.Message;
                 response.Success = false;
                 return response;
             }
-            address = new Address(id, requestDTO.Address.StreetAddress, requestDTO.Address.StreetAddress2, requestDTO.Address.City, requestDTO.Address.State, requestDTO.Address.PostalCode);
-            Address  updatedAddress = await _addressDomainService.UpdateAddress(address);
-            AddressDTO updatedAddressDTO = new AddressDTO(updatedAddress.Id, updatedAddress.StreetAddress, updatedAddress.StreetAddress2, updatedAddress.City, updatedAddress.State, updatedAddress.PostalCode);
-
-            response.StatusCode = HttpStatusCode.OK;
-            response.Success = true;
-            response.Value = updatedAddressDTO;
-            return Ok(response);
         }
 
         [HttpDelete]

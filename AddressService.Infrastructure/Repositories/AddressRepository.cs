@@ -39,6 +39,7 @@ namespace AddressService.Infrastructure.Repositories
 
         public async Task<Address> UpdateAddress(Address address)
         {
+            
             _addressDbContext.Addresses.Update(address);
             await _addressDbContext.SaveChangesAsync();
             return address;
